@@ -40,9 +40,10 @@ class Item
 
     public function prepare(): array
     {
-        $data = [
-            'itemDescription' => $this->itemDescription,
-        ];
+        $data = [];
+        if (!empty($this->itemDescription)) {
+            $data['itemDescription'] = $this->itemDescription;
+        }
         if (!empty($this->weight)) {
             $data['weight'] = $this->weight->prepare();
         }
