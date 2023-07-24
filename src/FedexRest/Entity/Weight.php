@@ -5,7 +5,7 @@ namespace FedexRest\Entity;
 class Weight
 {
     public string $unit = '';
-    public string $value = '';
+    public int $value = 100;
 
     /**
      * @param  string  $unit
