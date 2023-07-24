@@ -539,7 +539,7 @@ class RateQuotes extends AbstractRequest
                   },
                   "packagingType": "YOUR_PACKAGING",
                   "totalPackageCount": 3,
-                  "totalWeight": 87.5,
+                  "totalWeight": 7.5,
                   "shipmentSpecialServices": {
                     "returnShipmentDetail": {
                       "returnType": "PRINT_RETURN_LABEL"
