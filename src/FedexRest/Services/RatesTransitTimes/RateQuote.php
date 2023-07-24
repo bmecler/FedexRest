@@ -3,7 +3,7 @@
 namespace FedexRest\Services\RatesTransitTimes;
 
 use FedexRest\Entity\Item;
-use FedexRest\Entity\Person;
+use FedexRest\Entity\Address;
 use FedexRest\Services\RatesTransitTimes\Entity\EmailNotificationRecipient;
 use FedexRest\Services\RatesTransitTimes\Entity\RequestedPackageLineItem;
 use FedexRest\Exceptions\MissingAccountNumberException;
@@ -14,8 +14,8 @@ use FedexRest\Services\RatesTransitTimes\Type\PickupType;
 class RateQuotes extends AbstractRequest
 {
     protected int $account_number;
-    protected Person $shipper;
-    protected Person $recipient;
+    protected Address $shipper;
+    protected Address $recipient;
     protected array $recipients;
     protected ?Item $line_items;
     protected string $service_type;
@@ -109,36 +109,36 @@ class RateQuotes extends AbstractRequest
     }
 
     /**
-     * @return Person
+     * @return Address
      */
-    public function getShipper(): Person
+    public function getShipper(): Address
     {
         return $this->shipper;
     }
 
     /**
-     * @param  Person  $shipper
+     * @param  Address  $shipper
      * @return $this
      */
-    public function setShipper(Person $shipper): RateQuotes
+    public function setShipper(Address $shipper): RateQuotes
     {
         $this->shipper = $shipper;
         return $this;
     }
 
     /**
-     * @return Person
+     * @return Address
      */
-    public function getRecipient(): Person
+    public function getRecipient(): Address
     {
         return $this->recipient;
     }
 
     /**
-     * @param  Person  $recipient
+     * @param  Address  $recipient
      * @return $this
      */
-    public function setRecipient(Person $recipient): RateQuotes
+    public function setRecipient(Address $recipient): RateQuotes
     {
         $this->recipient = $recipient;
         return $this;
