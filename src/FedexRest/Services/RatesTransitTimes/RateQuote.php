@@ -91,24 +91,6 @@ class RateQuotes extends AbstractRequest
     }
 
     /**
-     * @param  Person  ...$recipients
-     * @return $this
-     */
-    public function setRecipients(Person ...$recipients): RateQuotes
-    {
-        $this->recipients = $recipients;
-        return $this;
-    }
-
-    /**
-     * @return array
-     */
-    public function getRecipients(): array
-    {
-        return $this->recipients;
-    }
-
-    /**
      * @return Address
      */
     public function getShipper(): Address
