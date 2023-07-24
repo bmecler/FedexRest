@@ -266,40 +266,56 @@ class RateQuotes extends AbstractRequest
      */
     public function prepare(): array
     {
+        $data = [];
+
+        $data["rateRequestControlParameters"]["returnTransitTimes"] = true;
+        $data["rateRequestControlParameters"]["servicesNeededOnRateFailure"] = true;
+        $data["rateRequestControlParameters"]["variableOptions"] = 'FREIGHT_GUARANTEE';
+        $data["rateRequestControlParameters"]["rateSortOrder"] = 'SERVICENAMETRADITIONAL';
+
+        if (!empty($this->account_number)) {
+            $data['accountNumber']['value'] = $this->account_number;
+        }
+        if (!empty($this->shipper)) {
+            $data['requestedShipment']['shipper'] = $this->shipper->prepare();
+        }
+        if (!empty($this->recipient)) {
+            $data['requestedShipment']['recipient'] = $this->recipient->prepare();
+        }
+        /*
+        if (!empty($this->account_number)) {
+            $data['requestedShipment']['serviceType'] = 'STANDARD_OVERNIGHT';
+        }
+        */
+        if (!empty($this->email_notification_recipient)) {
+            $data['requestedShipment']['emailNotificationDetail'] = [$this->email_notification_recipient->prepare()];
+        }
+        $data['requestedShipment']['preferredCurrency'] = 'USD';
+        $data['requestedShipment']['rateRequestType'] = ['ACCOUNT','LIST'];
+        if (!empty($this->ship_datestamp)) {
+            $data['requestedShipment']['shipDateStamp'] = $this->ship_datestamp;
+        }
+        if (!empty($this->pickup_type)) {
+            $data['requestedShipment']['pickupType'] = $this->pickup_type;
+        }
+        if (!empty($this->requested_package_line_item)) {
+            $data['requestedShipment']['requestedPackageLineItems'] = [$this->requested_package_line_item];
+        }
+        if (!empty($this->document_shipment)) {
+            $data['requestedShipment']['documentShipment'] = $this->document_shipment;
+        }
+        $data['requestedShipment']['packagingType'] = 'YOUR_PACKAGING';
+        if (!empty($this->total_package_count)) {
+            $data['requestedShipment']['totalPackageCount'] = $this->total_package_count;
+        }
+        if (!empty($this->total_weight)) {
+            $data['requestedShipment']['totalWeight'] = $this->total_weight;
+        }
+        $data['requestedShipment']['groupShipment'] = true;
+        $data['carrierCodes'] = ['FDXE'];
+
         return [
-            'json' => [
-                "accountNumber" => [
-                    "value" => $this->account_number
-                ],
-                "rateRequestControlParameters" => [
-                    "returnTransitTimes" => true,
-                    "servicesNeededOnRateFailure" => true,
-                    "variableOptions" => "FREIGHT_GUARANTEE",
-                    "rateSortOrder" => "SERVICENAMETRADITIONAL"
-                ],
-                "requestedShipment" => [
-                    "shipper" => $this->shipper->prepare(),
-                    "recipient" => $this->recipient->prepare(),
-                   // "serviceType" => "STANDARD_OVERNIGHT",
-                    "emailNotificationDetail" => [$this->email_notification_recipient->prepare()],
-                    "preferredCurrency" => "USD",
-                    "rateRequestType" => [
-                        "ACCOUNT",
-                        "LIST"
-                    ],
-                    "shipDateStamp" => $this->ship_datestamp,
-                    "pickupType" => $this->pickup_type,
-                    "requestedPackageLineItems" => [$this->requested_package_line_item],
-                    "documentShipment" => $this->document_shipment,
-                    "packagingType" => "YOUR_PACKAGING",
-                    "totalPackageCount" => $this->total_package_count,
-                    "totalWeight" => $this->total_weight,
-                    "groupShipment" => true,
-                ],
-                "carrierCodes" => [
-                    "FDXE"
-                ],
-            ],
+            'json' => [$data],
         ];
     }
 
