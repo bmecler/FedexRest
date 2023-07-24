@@ -268,10 +268,10 @@ class RateQuotes extends AbstractRequest
     {
         $data = [];
 
-        $data["rateRequestControlParameters"]["returnTransitTimes"] = true;
+       /* $data["rateRequestControlParameters"]["returnTransitTimes"] = true;
         $data["rateRequestControlParameters"]["servicesNeededOnRateFailure"] = true;
         $data["rateRequestControlParameters"]["variableOptions"] = 'FREIGHT_GUARANTEE';
-        $data["rateRequestControlParameters"]["rateSortOrder"] = 'SERVICENAMETRADITIONAL';
+        $data["rateRequestControlParameters"]["rateSortOrder"] = 'SERVICENAMETRADITIONAL'; */
 
         if (!empty($this->account_number)) {
             $data['accountNumber']['value'] = $this->account_number;
@@ -290,8 +290,8 @@ class RateQuotes extends AbstractRequest
         if (!empty($this->email_notification_recipient)) {
             $data['requestedShipment']['emailNotificationDetail'] = [$this->email_notification_recipient->prepare()];
         }
-        $data['requestedShipment']['preferredCurrency'] = 'USD';
-        $data['requestedShipment']['rateRequestType'] = ['ACCOUNT','LIST'];
+       // $data['requestedShipment']['preferredCurrency'] = 'USD';
+       // $data['requestedShipment']['rateRequestType'] = ['ACCOUNT','LIST'];
         if (!empty($this->ship_datestamp)) {
             $data['requestedShipment']['shipDateStamp'] = $this->ship_datestamp;
         }
@@ -304,15 +304,15 @@ class RateQuotes extends AbstractRequest
         if (!empty($this->document_shipment)) {
             $data['requestedShipment']['documentShipment'] = $this->document_shipment;
         }
-        $data['requestedShipment']['packagingType'] = 'YOUR_PACKAGING';
+        //$data['requestedShipment']['packagingType'] = 'YOUR_PACKAGING';
         if (!empty($this->total_package_count)) {
             $data['requestedShipment']['totalPackageCount'] = $this->total_package_count;
         }
         if (!empty($this->total_weight)) {
             $data['requestedShipment']['totalWeight'] = $this->total_weight;
         }
-        $data['requestedShipment']['groupShipment'] = true;
-        $data['carrierCodes'] = ['FDXE'];
+       // $data['requestedShipment']['groupShipment'] = true;
+       // $data['carrierCodes'] = ['FDXE'];
 
         return [
             'json' => [$data],
