@@ -17,7 +17,6 @@ class RateQuotes extends AbstractRequest
     protected Address $shipper;
     protected Address $recipient;
     protected array $recipients;
-    protected ?Item $line_items;
     protected string $service_type;
     protected string $packaging_type;
     protected string $ship_datestamp;
@@ -51,24 +50,6 @@ class RateQuotes extends AbstractRequest
     public function setPackagingType(string $packaging_type): RateQuotes
     {
         $this->packaging_type = $packaging_type;
-        return $this;
-    }
-
-    /**
-     * @return Item
-     */
-    public function getLineItems(): Item
-    {
-        return $this->line_items;
-    }
-
-    /**
-     * @param  Item  $line_items
-     * @return $this
-     */
-    public function setLineItems(Item $line_items): RateQuotes
-    {
-        $this->line_items = $line_items;
         return $this;
     }
 
