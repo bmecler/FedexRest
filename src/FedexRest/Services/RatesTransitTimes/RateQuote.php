@@ -353,7 +353,6 @@ class RateQuotes extends AbstractRequest
                       "residential": false
                     }
                   },
-                  "serviceType": "STANDARD_OVERNIGHT",
                   "emailNotificationDetail": {
                     "recipients": [
                       {
