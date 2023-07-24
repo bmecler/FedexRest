@@ -22,7 +22,7 @@ class RateQuotes extends AbstractRequest
     protected string $packaging_type;
     protected string $ship_datestamp;
     protected EmailNotificationRecipient $email_notification_recipient;
-    protected PickupType $pickup_type;
+    protected string $pickup_type;
     protected RequestedPackageLineItem $requested_package_line_item;
     protected bool $document_shipment = false;
     protected int $total_package_count;
@@ -176,16 +176,16 @@ class RateQuotes extends AbstractRequest
      * @param  mixed  $pickup_type
      * @return $this
      */
-    public function setPickupType(PickupType $pickup_type): RateQuotes
+    public function setPickupType(string $pickup_type): RateQuotes
     {
         $this->pickup_type = $pickup_type;
         return $this;
     }
 
     /**
-     * @return PickupType
+     * @return string
      */
-    public function getPickupType(): PickupType
+    public function getPickupType(): string
     {
         return $this->pickup_type;
     }
