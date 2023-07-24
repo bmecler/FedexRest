@@ -268,8 +268,8 @@ class RateQuotes extends AbstractRequest
     {
         $data = [];
 
-        $data["rateRequestControlParameters"]["returnTransitTimes"] = true;
-        $data["rateRequestControlParameters"]["servicesNeededOnRateFailure"] = true;
+       // $data["rateRequestControlParameters"]["returnTransitTimes"] = true;
+        //$data["rateRequestControlParameters"]["servicesNeededOnRateFailure"] = true;
         $data["rateRequestControlParameters"]["variableOptions"] = 'FREIGHT_GUARANTEE';
         $data["rateRequestControlParameters"]["rateSortOrder"] = 'SERVICENAMETRADITIONAL';
 
@@ -307,7 +307,7 @@ class RateQuotes extends AbstractRequest
         if (!empty($this->total_weight)) {
             $data['requestedShipment']['totalWeight'] = $this->total_weight;
         }
-        $data['requestedShipment']['groupShipment'] = true;
+        //$data['requestedShipment']['groupShipment'] = true;
         $data['carrierCodes'] = ['FDXE'];
 
         return [
