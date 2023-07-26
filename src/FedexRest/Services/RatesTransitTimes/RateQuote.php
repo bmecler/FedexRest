@@ -52,7 +52,7 @@ class RateQuotes extends AbstractRequest
     }
 
     /**
-     * @param  mixed  $service_type
+     * @param  string  $service_type
      * @return RateQuotes
      */
     public function setServiceType(string $service_type): RateQuotes
@@ -275,6 +275,9 @@ class RateQuotes extends AbstractRequest
         }
         if (!empty($this->recipient)) {
             $data['requestedShipment']['recipient']['address'] = $this->recipient->prepare();
+        }
+        if (!empty($this->service_type)) {
+            $data['requestedShipment']['serviceType'] = $this->service_type;
         }
         if (!empty($this->email_notification_recipient)) {
             $data['requestedShipment']['emailNotificationDetail'] = [$this->email_notification_recipient->prepare()];
