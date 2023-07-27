@@ -16,6 +16,7 @@ class RateQuotes extends AbstractRequest
     protected Address $recipient;
     protected array $recipients;
     protected string $service_type;
+    protected string $package_type;
     protected string $packaging_type;
     protected string $ship_datestamp;
     protected EmailNotificationRecipient $email_notification_recipient;
@@ -67,6 +68,24 @@ class RateQuotes extends AbstractRequest
     public function getServiceType(): string
     {
         return $this->service_type;
+    }
+
+    /**
+     * @param  string  $package_type
+     * @return RateQuotes
+     */
+    public function setPackageType(string $package_type): RateQuotes
+    {
+        $this->package_type = $package_type;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPackageType(): string
+    {
+        return $this->package_type;
     }
 
     /**
@@ -292,7 +311,9 @@ class RateQuotes extends AbstractRequest
         if (!empty($this->requested_package_line_items)) {
             $data['requestedShipment']['requestedPackageLineItems'] = $this->requested_package_line_items;
         }
-        $data['requestedShipment']['packagingType'] = 'YOUR_PACKAGING';
+        if (!empty($this->package_type)) {
+            $data['requestedShipment']['packagingType'] = $this->package_type;
+        }
         if (!empty($this->total_package_count)) {
             $data['requestedShipment']['totalPackageCount'] = $this->total_package_count;
         }

@@ -9,4 +9,5 @@ class ServiceType
     const _FIRST_OVERNIGHT = 'FIRST_OVERNIGHT ';
     const _PRIORITY_OVERNIGHT = 'PRIORITY_OVERNIGHT';
     const _FEDEX_2_DAY = 'FEDEX_2_DAY ';
+    const _FEDEX_EXPRESS_SAVER = 'FEDEX_EXPRESS_SAVER';
 }
